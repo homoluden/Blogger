@@ -30,8 +30,6 @@ namespace BloggerClient.Controls
 
         private void AuthorizeButton_Click_1(object sender, RoutedEventArgs e)
         {
-            var settings = IsolatedStorageSettings.ApplicationSettings;
-
             Communicator.Instance.Login = LoginBox.Text;
             Communicator.Instance.AuthorizationToken = AuthBox.Text;
             Communicator.Instance.LoadAccessTokens();
@@ -62,6 +60,17 @@ namespace BloggerClient.Controls
                 AuthBox.Text = match.Groups.Count > 1 ? match.Groups[1].ToString() : string.Empty;
                 AuthProxyBrowser.Visibility = Visibility.Collapsed;
             }
+        }
+
+        private void LoginBox_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            LoginBox.Text = Communicator.Instance.Login;
+        }
+
+        private void LoginBox_LostFocus_1(object sender, RoutedEventArgs e)
+        {
+            // TODO: Add checking
+            Communicator.Instance.Login = LoginBox.Text;
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Google.GData.Blogger;
+﻿using Blogger.Responses;
+using ServiceStack.Text;
 using System;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -33,7 +34,7 @@ namespace Blogger
         #region Properties
         public string Login
         {
-            get { return _settings["Login"].ToString(); }
+            get { return (string)_settings["Login"]; }
             set 
             {
                 _settings["Login"] = value;
@@ -42,7 +43,7 @@ namespace Blogger
         
         public string AuthorizationToken
         {
-            get { return _settings["AuthToken"].ToString(); }
+            get { return (string)_settings["AuthToken"]; }
             set 
             {
                 _settings["AuthToken"] = value;
@@ -53,59 +54,38 @@ namespace Blogger
 
         public string ClientId 
         { 
-            get { return _settings["ClientId"].ToString(); }
+            get { return (string)_settings["ClientId"]; }
             set { _settings["ClientId"] = value; }
         }
 
         public string ClientSecret 
         {
-            get { return _settings["ClientSecret"].ToString(); }
+            get { return (string)_settings["ClientSecret"]; }
             set { _settings["ClientSecret"] = value; }
         }
 
         public string RedirectUri 
         {
-            get { return _settings["RedirectUri"].ToString(); }
+            get { return (string)_settings["RedirectUri"]; }
             set { _settings["RedirectUri"] = value; }
         }
 
         public string TokenRequestUrl 
         {
-            get 
-            {
-                var requestUrl = _settings["TokenRequestUrl"].ToString();
-                if (string.IsNullOrWhiteSpace(requestUrl))
-                {
-                    _settings["TokenRequestUrl"] = requestUrl = "https://accounts.google.com/o/oauth2/token";
-                }
-                return requestUrl; 
-            }            
+            get { return (string)_settings["TokenRequestUrl"]; }
+            set { _settings["TokenRequestUrl"] = value; }
         }
 
         public string AuthorizationRequestUrl 
         {
-            get 
-            {
-                var requestUrl = _settings["AuthorizationRequestUrl"].ToString();
-                if (string.IsNullOrWhiteSpace(requestUrl))
-                {
-                    _settings["AuthorizationRequestUrl"] = requestUrl = "https://accounts.google.com/o/oauth2/auth";
-                }
-                return requestUrl; 
-            }            
+            get { return (string)_settings["AuthorizationRequestUrl"]; }
+            set { _settings["AuthorizationRequestUrl"] = value; }
         }
 
         public string PermissionsScope 
         {
-            get 
-            {
-                var requestUrl = _settings["PermissionsScope"].ToString();
-                if (string.IsNullOrWhiteSpace(requestUrl))
-                {
-                    _settings["PermissionsScope"] = requestUrl = "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fblogger";
-                }
-                return requestUrl; 
-            }            
+            get { return (string)_settings["PermissionsScope"]; }
+            set { _settings["PermissionsScope"] = value; }
         }
 
         #endregion
@@ -118,8 +98,8 @@ namespace Blogger
             readTask.Wait();
 
             var response = readTask.Result;
-
-            return response;
+            
+            return response.FromJson<AccessTokensResponse>();
         }
         private void HandleAccessTokenLoadingError(Task<HttpResponseMessage> task) 
         {
@@ -130,19 +110,39 @@ namespace Blogger
         #region Private Methods
         private void InitializeCommunicator() 
         {
-            if (ClientId == null)
+            if (!_settings.Contains("Login"))
+            {
+                Login = "asm@example.com";
+            }
+
+            if (!_settings.Contains("ClientId"))
             {
                 ClientId = "715063550855.apps.googleusercontent.com";
             }
 
-            if (ClientSecret == null)
+            if (!_settings.Contains("ClientSecret"))
             {
                 ClientSecret = "iquSk4i-DHCXdYYZdLGPmMzJ";
             }
 
-            if (RedirectUri == null)
+            if (!_settings.Contains("RedirectUri"))
             {
                 RedirectUri = "urn:ietf:wg:oauth:2.0:oob";
+            }
+
+            if (!_settings.Contains("TokenRequestUrl"))
+            {
+                TokenRequestUrl = "https://accounts.google.com/o/oauth2/token";
+            }
+
+            if (!_settings.Contains("AuthorizationRequestUrl"))
+            {
+                AuthorizationRequestUrl = "https://accounts.google.com/o/oauth2/auth";
+            }
+
+            if (!_settings.Contains("PermissionsScope"))
+            {
+                PermissionsScope = "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fblogger";
             }
 
             _handler = new HttpClientHandler();
@@ -159,7 +159,7 @@ namespace Blogger
             }
 
             var contentString = string.Format("code={0}&client_id={1}&client_secret={2}&redirect_uri={3}&grant_type=authorization_code", 
-                                              _authToken,
+                                              AuthorizationToken,
                                               ClientId,
                                               ClientSecret,
                                               RedirectUri);

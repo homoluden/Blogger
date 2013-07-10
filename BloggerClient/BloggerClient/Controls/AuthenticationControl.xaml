@@ -35,7 +35,8 @@
         <TextBlock Text="Login" Grid.Row="0"/>
         <TextBlock Text="Code" Grid.Row="2"/>
 
-        <TextBox x:Name="LoginBox" Text="asm@exanple.com" Grid.Row="0" Grid.Column="1"/>
+        <TextBox x:Name="LoginBox" Grid.Row="0" Grid.Column="1"
+                 Loaded="LoginBox_Loaded_1" LostFocus="LoginBox_LostFocus_1"/>
         <TextBox x:Name="AuthBox" Grid.Row="2" Grid.Column="1"/>
 
         <Button x:Name="GetAuthCodeButton" Content="Get Code" Grid.Column="0" Grid.Row="3"
