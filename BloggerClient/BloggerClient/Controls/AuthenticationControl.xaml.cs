@@ -12,6 +12,7 @@ using Microsoft.Phone.Tasks;
 using Blogger;
 using System.Text.RegularExpressions;
 using System.Text;
+using System.IO.IsolatedStorage;
 
 namespace BloggerClient.Controls
 {
@@ -29,6 +30,8 @@ namespace BloggerClient.Controls
 
         private void AuthorizeButton_Click_1(object sender, RoutedEventArgs e)
         {
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+
             Communicator.Instance.Login = LoginBox.Text;
             Communicator.Instance.AuthorizationToken = AuthBox.Text;
             Communicator.Instance.LoadAccessTokens();
@@ -37,7 +40,13 @@ namespace BloggerClient.Controls
         private void GetAuthCodeButton_Click_1(object sender, RoutedEventArgs e)
         {
             AuthProxyBrowser.Visibility = Visibility.Visible;
-            var uri = new Uri("https://accounts.google.com/o/oauth2/auth?response_type=code&client_id=715063550855.apps.googleusercontent.com&redirect_uri=urn:ietf:wg:oauth:2.0:oob&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fblogger&login_hint=asm@exanple.com", UriKind.Absolute);
+            var uri = new Uri(string.Format("{0}?response_type=code&client_id={1}&redirect_uri={2}&scope={3}&login_hint={4}", 
+                                            Communicator.Instance.AuthorizationRequestUrl,
+                                            Communicator.Instance.ClientId,
+                                            Communicator.Instance.RedirectUri,
+                                            Communicator.Instance.PermissionsScope,
+                                            Communicator.Instance.Login), 
+                              UriKind.Absolute);
             AuthProxyBrowser.Navigate(uri);
         }
 
