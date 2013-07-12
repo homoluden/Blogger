@@ -1,4 +1,4 @@
-﻿using Blogger.Responses;
+﻿using Blogger.Data.Responses;
 using ServiceStack.Text;
 using System;
 using System.IO;

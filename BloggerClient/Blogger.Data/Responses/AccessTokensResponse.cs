@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Blogger.Responses
+namespace Blogger.Data.Responses
 {
     /* {
           "access_token" : "ya29.AHES6ZQQOug83DDJabhEi2d428WRDm-JOKOjfib8gL1Uc8Y",
