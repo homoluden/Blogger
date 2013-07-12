@@ -14,7 +14,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Blogger.ViewModels;
 
-namespace BloggerClient
+namespace Blogger.UI
 {
     public partial class App : Application
     {

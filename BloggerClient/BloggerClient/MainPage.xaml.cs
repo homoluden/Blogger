@@ -13,7 +13,7 @@ using Microsoft.Phone.Controls;
 using System.Text.RegularExpressions;
 using Blogger;
 
-namespace BloggerClient
+namespace Blogger.UI
 {
     public partial class MainPage : PhoneApplicationPage
     {

@@ -14,7 +14,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using System.IO.IsolatedStorage;
 
-namespace BloggerClient.Controls
+namespace Blogger.UI.Controls
 {
     public partial class AuthenticationControl : UserControl
     {
