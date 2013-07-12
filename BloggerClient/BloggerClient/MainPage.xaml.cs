@@ -35,19 +35,5 @@ namespace BloggerClient
                 App.ViewModel.LoadData();
             }
         }
-
-        //private void BrowserFrame_LoadCompleted_1(object sender, System.Windows.Navigation.NavigationEventArgs e)
-        //{
-        //    Communicator.Instance.AuthorizationToken = string.Empty;
-        //    var source = BrowserFrame.SaveToString();
-        //    var regex = new Regex("id=\"code\"[\\w\\s\\\"\\=\\.\\(\\);]+?value=\"(.+?)\"");
-        //    var match = regex.Matches(source).OfType<Match>().FirstOrDefault();
-
-        //    if (match != null)
-        //    {
-        //        Communicator.Instance.AuthorizationToken = match.Groups.Count > 1 ? match.Groups[1].ToString() : string.Empty;
-        //        Communicator.Instance.LoadAccessTokens();
-        //    }
-        //}
     }
 }
