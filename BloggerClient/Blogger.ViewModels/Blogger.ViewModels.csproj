@@ -49,16 +49,24 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ItemViewModel.cs" />
+    <Compile Include="BaseViewModel.cs" />
     <Compile Include="MainPageViewModel.cs" />
     <Compile Include="AppViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BloggerCommunicator\Blogger.csproj">
+    <ProjectReference Include="..\Blogger.Enums\Blogger.Enums.csproj">
+      <Project>{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}</Project>
+      <Name>Blogger.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blogger.Resources\Blogger.Resources.csproj">
+      <Project>{E812CB57-C2A9-42EF-A38B-533E14979772}</Project>
+      <Name>Blogger.Resources</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BloggerCommunicator\Blogger.Core.csproj">
       <Project>{2DCAEEF5-0E47-4CA4-BC72-1F9571E630B8}</Project>
-      <Name>Blogger</Name>
+      <Name>Blogger.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

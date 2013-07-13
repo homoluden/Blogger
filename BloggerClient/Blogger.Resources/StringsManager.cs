@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Blogger.Enums;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -11,13 +12,21 @@ namespace Blogger.Resources
     public sealed class StringsManager
     {
         #region Constants
-        public readonly string NOT_AVAILABLE_STRING = "N/A";
+        public static readonly string NOT_AVAILABLE_STRING = "N/A";
         #endregion
 
         #region Fields
         ResourceManager _resManager;
         CultureInfo _currCulture;
         Dictionary<string, string> _cache = new Dictionary<string, string>();
+        #endregion
+
+
+        #region Static Methods
+        public static string GetSettingName(Setting settingNameEnum)
+        {
+            return Settings.GetString(settingNameEnum.ToString());
+        }
         #endregion
 
 

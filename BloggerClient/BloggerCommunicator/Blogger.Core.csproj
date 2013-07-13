@@ -9,8 +9,8 @@
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blogger</RootNamespace>
-    <AssemblyName>Blogger</AssemblyName>
+    <RootNamespace>Blogger.Core</RootNamespace>
+    <AssemblyName>Blogger.Core</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -81,6 +81,14 @@
     <ProjectReference Include="..\Blogger.Data\Blogger.Data.csproj">
       <Project>{CB58E918-41AE-4B73-BE11-89C18132F769}</Project>
       <Name>Blogger.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blogger.Enums\Blogger.Enums.csproj">
+      <Project>{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}</Project>
+      <Name>Blogger.Enums</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Blogger.Resources\Blogger.Resources.csproj">
+      <Project>{E812CB57-C2A9-42EF-A38B-533E14979772}</Project>
+      <Name>Blogger.Resources</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

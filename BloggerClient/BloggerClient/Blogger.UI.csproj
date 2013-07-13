@@ -167,9 +167,9 @@
       <Project>{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}</Project>
       <Name>Blogger.ViewModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\BloggerCommunicator\Blogger.csproj">
+    <ProjectReference Include="..\BloggerCommunicator\Blogger.Core.csproj">
       <Project>{2DCAEEF5-0E47-4CA4-BC72-1F9571E630B8}</Project>
-      <Name>Blogger</Name>
+      <Name>Blogger.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

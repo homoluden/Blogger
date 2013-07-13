@@ -1,4 +1,6 @@
 ﻿using Blogger.Data.Responses;
+using Blogger.Enums;
+using Blogger.Resources;
 using ServiceStack.Text;
 using System;
 using System.IO;
@@ -15,83 +17,99 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace Blogger
+namespace Blogger.Core
 {
     public sealed class Communicator
     {
         #region Fields
+        
         private IsolatedStorageSettings _settings = IsolatedStorageSettings.ApplicationSettings;
 
-        private string _login = string.Empty;
-        private string _authToken = string.Empty;
-
-        private bool _isAuthorized;
         private HttpClientHandler _handler;
         private HttpClient _client;
+
         #endregion
 
 
         #region Properties
-        public string Login
-        {
-            get { return (string)_settings["Login"]; }
-            set 
-            {
-                _settings["Login"] = value;
-            }
-        }
+
+        public string Login { get; set; }
         
-        public string AuthorizationToken
-        {
-            get { return (string)_settings["AuthToken"]; }
-            set 
-            {
-                _settings["AuthToken"] = value;
-                _isAuthorized = !string.IsNullOrWhiteSpace(value);
-            }
-        }
-        public bool IsAuthorized { get { return _isAuthorized; } }
+        public string AuthorizationToken { get; set; }
+        
+        public string AccessToken { get; set; }
+        
+        public string RefreshToken { get; set; }
+        
+        public bool IsAuthorized { get; set; }
 
-        public string ClientId 
-        { 
-            get { return (string)_settings["ClientId"]; }
-            set { _settings["ClientId"] = value; }
-        }
+        public string ClientId { get; set; }
 
-        public string ClientSecret 
-        {
-            get { return (string)_settings["ClientSecret"]; }
-            set { _settings["ClientSecret"] = value; }
-        }
+        public string ClientSecret { get; set; }
 
-        public string RedirectUri 
-        {
-            get { return (string)_settings["RedirectUri"]; }
-            set { _settings["RedirectUri"] = value; }
-        }
+        public string RedirectUri { get; set; }
 
-        public string TokenRequestUrl 
-        {
-            get { return (string)_settings["TokenRequestUrl"]; }
-            set { _settings["TokenRequestUrl"] = value; }
-        }
+        public string TokenRequestUrl { get; set; }
 
-        public string AuthorizationRequestUrl 
-        {
-            get { return (string)_settings["AuthorizationRequestUrl"]; }
-            set { _settings["AuthorizationRequestUrl"] = value; }
-        }
+        public string AuthorizationRequestUrl { get; set; }
 
-        public string PermissionsScope 
-        {
-            get { return (string)_settings["PermissionsScope"]; }
-            set { _settings["PermissionsScope"] = value; }
-        }
+        public string PermissionsScope { get; set; }
 
         #endregion
 
-
+        
         #region Private Methods
+        
+        private string TryLoadIndividualSetting(IsolatedStorageSettings settings, Setting settingNameEnum)
+        {
+            string settingValue;
+
+            return settings.TryGetValue<string>(StringsManager.GetSettingName(settingNameEnum), out settingValue) ?
+                                            settingValue :
+                                            StringsManager.NOT_AVAILABLE_STRING;
+        }
+
+        private void LoadSettings()
+        {
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+            
+            Communicator.Instance.Login = TryLoadIndividualSetting(settings, Setting.LoginName);
+
+            Communicator.Instance.AuthorizationToken = TryLoadIndividualSetting(settings, Setting.AuthTokenName);
+
+            Communicator.Instance.AccessToken = TryLoadIndividualSetting(settings, Setting.AccessTokenName);
+
+            Communicator.Instance.RefreshToken = TryLoadIndividualSetting(settings, Setting.RefreshTokenName);
+        }
+
+        private void TrySetIndividualSetting(IsolatedStorageSettings settings, Setting settingNameEnum, string settingValue)
+        {
+            var settingName = settingNameEnum.ToString();
+            if (settings.Contains(settingName))
+            {
+                settings[settingName] = settingValue;
+            }
+            else
+            {
+                settings.Add(settingName, settingValue);
+            }            
+        }
+
+        private void SaveSettings()
+        {
+            var settings = IsolatedStorageSettings.ApplicationSettings;
+
+            TrySetIndividualSetting(settings, Setting.LoginName, Communicator.Instance.Login);
+
+            TrySetIndividualSetting(settings, Setting.AuthTokenName, Communicator.Instance.AuthorizationToken);
+
+            TrySetIndividualSetting(settings, Setting.AccessTokenName, Communicator.Instance.AccessToken);
+
+            TrySetIndividualSetting(settings, Setting.RefreshTokenName, Communicator.Instance.RefreshToken);
+
+            settings.Save();
+        }
+
         private object HandleAccessTokensResponse(Task<HttpResponseMessage> task) 
         {
             var readTask = task.Result.Content.ReadAsStringAsync();

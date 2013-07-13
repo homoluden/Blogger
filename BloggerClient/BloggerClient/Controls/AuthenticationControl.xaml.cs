@@ -9,7 +9,7 @@ using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using Microsoft.Phone.Tasks;
 
-using Blogger;
+using Blogger.Core;
 using System.Text.RegularExpressions;
 using System.Text;
 using System.IO.IsolatedStorage;

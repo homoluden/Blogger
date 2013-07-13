@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.UI", "BloggerClient\Blogger.UI.csproj", "{A5DF3FC3-B840-4A04-B04C-FB8543D89835}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger", "BloggerCommunicator\Blogger.csproj", "{2DCAEEF5-0E47-4CA4-BC72-1F9571E630B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Core", "BloggerCommunicator\Blogger.Core.csproj", "{2DCAEEF5-0E47-4CA4-BC72-1F9571E630B8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Data", "Blogger.Data\Blogger.Data.csproj", "{CB58E918-41AE-4B73-BE11-89C18132F769}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Resources", "Blogger.Resources\Blogger.Resources.csproj", "{E812CB57-C2A9-42EF-A38B-533E14979772}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.ViewModels", "Blogger.ViewModels\Blogger.ViewModels.csproj", "{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Enums", "Blogger.Enums\Blogger.Enums.csproj", "{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,12 @@ Global
 		{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.ASP|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.ASP|Any CPU.Build.0 = Release|Any CPU
+		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
