@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Blogger.ViewModels
 {
-    class UserViewModel
+    public class UserViewModel
     {
     }
 }

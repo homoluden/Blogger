@@ -10,9 +10,9 @@ using System.Collections.ObjectModel;
 
 namespace Blogger.ViewModels
 {
-    public class MainViewModel : INotifyPropertyChanged
+    public class AppViewModel : INotifyPropertyChanged
     {
-        public MainViewModel()
+        public AppViewModel()
         {
             this.Items = new ObservableCollection<ItemViewModel>();
         }

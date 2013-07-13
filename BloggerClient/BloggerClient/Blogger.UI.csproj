@@ -149,7 +149,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AppManifest.xml" />
-    <None Include="Properties\WMAppManifest.xml" />
+    <None Include="Properties\WMAppManifest.xml">
+      <SubType>Designer</SubType>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Content Include="ApplicationIcon.png">
@@ -162,7 +164,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Blogger.ViewModels\Blogger.ViewModels.csproj">
-      <Project>{A6B3D059-2FD3-4560-84A6-D8C96DE013E3}</Project>
+      <Project>{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}</Project>
       <Name>Blogger.ViewModels</Name>
     </ProjectReference>
     <ProjectReference Include="..\BloggerCommunicator\Blogger.csproj">
@@ -170,9 +172,7 @@
       <Name>Blogger</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Pages\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
