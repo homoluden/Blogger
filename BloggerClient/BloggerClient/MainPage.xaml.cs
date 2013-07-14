@@ -41,7 +41,7 @@ namespace Blogger.UI
                 // onTokensExpired
                 () => 
                 {
-                    throw new NotFiniteNumberException();
+                    NavigationService.Navigate(new Uri("/Authorize", UriKind.Relative));
                 },
 
                 // onTokensOk

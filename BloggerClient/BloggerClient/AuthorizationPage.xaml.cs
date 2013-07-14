@@ -14,8 +14,7 @@ namespace BloggerClient.Pages
     {
         public AuthorizationPage()
         {
-            InitializeComponent();
-            NavigationService.Navigate(new Uri(""));
+            InitializeComponent();            
         }
     }
 }
