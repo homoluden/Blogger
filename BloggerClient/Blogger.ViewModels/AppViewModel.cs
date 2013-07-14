@@ -16,6 +16,16 @@ namespace Blogger.ViewModels
 {
     public class AppViewModel : BaseViewModel
     {
+
+        #region Public Methods
+
+        public void SaveSettings()
+        {
+            Communicator.Instance.SaveSettings();
+        }
+
+        #endregion
+
         public AppViewModel()
         {
             Communicator.Instance.LoadSettings();

@@ -95,6 +95,7 @@ namespace Blogger.UI
         // This code will not execute when the application is closing
         private void Application_Deactivated(object sender, DeactivatedEventArgs e)
         {
+            ViewModel.SaveSettings();
         }
 
         // Code to execute when the application is closing (eg, user hit Back)
@@ -102,6 +103,7 @@ namespace Blogger.UI
         private void Application_Closing(object sender, ClosingEventArgs e)
         {
             // Ensure that required application state is persisted here.
+            ViewModel.SaveSettings();
         }
 
         // Code to execute if a navigation fails
