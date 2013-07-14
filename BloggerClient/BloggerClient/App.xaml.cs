@@ -18,23 +18,11 @@ namespace Blogger.UI
 {
     public partial class App : Application
     {
-        private static AppViewModel viewModel = null;
-
         /// <summary>
         /// A static ViewModel used by the views to bind against.
         /// </summary>
         /// <returns>The MainViewModel object.</returns>
-        public static AppViewModel ViewModel
-        {
-            get
-            {
-                // Delay creation of the view model until necessary
-                if (viewModel == null)
-                    viewModel = new AppViewModel();
-
-                return viewModel;
-            }
-        }
+        public AppViewModel ViewModel { get; private set; }
 
         /// <summary>
         /// Provides easy access to the root frame of the Phone Application.
@@ -75,6 +63,8 @@ namespace Blogger.UI
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
+            ViewModel = new AppViewModel();
 
             RootFrame.UriMapper = Resources["UriMapper"] as UriMapper;
         }

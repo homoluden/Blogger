@@ -33,15 +33,23 @@ namespace Blogger.ViewModels
         #region Public Methods
         public void CheckTokens(Action onTokensExpired, Action onTokensOk, Action onConnectionError)
         {
-            if (string.IsNullOrWhiteSpace(Communicator.Instance.AuthorizationToken) ||
-                string.IsNullOrWhiteSpace(Communicator.Instance.AccessToken) ||
-                string.IsNullOrWhiteSpace(Communicator.Instance.RefreshToken))
+            if (Communicator.Instance.AuthorizationToken == StringsManagers.NOT_AVAILABLE_STRING)
             {
                 if (onTokensExpired != null)
                 {
                     onTokensExpired();
                 }
                 return;
+            }
+
+            if (Communicator.Instance.AccessToken == StringsManagers.NOT_AVAILABLE_STRING ||
+                Communicator.Instance.RefreshToken == StringsManagers.NOT_AVAILABLE_STRING)
+            {
+                // TODO: Implement Access Token Loaded Callbacks
+                //Communicator.Instance.Authorize(
+                //    task => { throw new NotImplementedException(); },
+                //    task => { throw new NotImplementedException(); }
+                //    );
             }
 
             Communicator.Instance.LoadUserInfoAsync();

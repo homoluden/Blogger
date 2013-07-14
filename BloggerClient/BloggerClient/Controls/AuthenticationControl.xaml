@@ -42,7 +42,7 @@
         <Button x:Name="GetAuthCodeButton" Content="Get Code" Grid.Column="0" Grid.Row="3"
                 Click="GetAuthCodeButton_Click_1"/>
         <Button x:Name="AuthorizeButton" Content="Authorize" Grid.Column="1" Grid.Row="3"
-                Click="AuthorizeButton_Click_1"/>
+                Click="AuthorizeButton_Click_1" Command="{Binding AuthorizeCommand}"/>
         
         <phone:WebBrowser x:Name="AuthProxyBrowser" IsScriptEnabled="True" Grid.ColumnSpan="2" Grid.RowSpan="10" Visibility="Collapsed"
                           LoadCompleted="BrowserFrame_LoadCompleted_1"/>

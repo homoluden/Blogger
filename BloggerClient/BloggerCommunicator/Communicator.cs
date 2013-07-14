@@ -65,17 +65,17 @@ namespace Blogger.Core
 
         #region PublicMethods
 
-        public void Authorize()
+        public void Authorize(Action<Task<HttpResponseMessage>> onSuccess, Action<Task<HttpResponseMessage>> onError)
         {
             Service.LoadAccessTokensAsync(
                 // onSuccess
                 t => {
-                    throw new NotFiniteNumberException();
+                    //throw new NotImplementedException();
                 },
 
                 // onError
                 t => {
-                    throw new NotFiniteNumberException();
+                    throw new NotImplementedException();
                 });
         }
 
@@ -85,13 +85,13 @@ namespace Blogger.Core
                 // onSuccess
                 t =>
                 {
-                    throw new NotFiniteNumberException();
+                    //throw new NotImplementedException();
                 },
 
                 // onError
                 t =>
                 {
-                    throw new NotFiniteNumberException();
+                    throw new NotImplementedException();
                 });
         }
 
