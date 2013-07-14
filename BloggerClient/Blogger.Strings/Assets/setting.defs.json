@@ -1,0 +1,38 @@
+﻿[
+	
+	{
+	   "Key": "LoginSettingName",
+	   "Value": "asm@example.com"   
+	},
+	
+	{
+	   "Key": "ClientIdSettingName",
+	   "Value": "715063550855.apps.googleusercontent.com"   
+	},
+
+	{
+	   "Key": "ClientSecretSettingName",
+	   "Value": "iquSk4i-DHCXdYYZdLGPmMzJ"   
+	},
+
+	{
+	   "Key": "RedirectUriSettingName",
+	   "Value": "urn:ietf:wg:oauth:2.0:oob"   
+	},
+
+	{
+	   "Key": "TokenRequestUrlSettingName",
+	   "Value": "https://accounts.google.com/o/oauth2/token"   
+	},
+
+	{
+	   "Key": "AuthorizationRequestUrlSettingName",
+	   "Value": "https://accounts.google.com/o/oauth2/auth"   
+	},
+
+	{
+	   "Key": "PermissionsScopeSettingName",
+	   "Value": "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fblogger"   
+	},
+
+]

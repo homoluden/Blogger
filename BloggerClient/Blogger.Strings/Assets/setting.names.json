@@ -1,0 +1,53 @@
+﻿[
+	
+	{
+	   "Key": "LoginSettingName",
+	   "Value": "Login"   
+	},
+
+	{
+	   "Key": "AuthTokenSettingName",
+	   "Value": "AuthorizationToken"   
+	},
+
+	{
+	   "Key": "AccessTokenSettingName",
+	   "Value": "AccessToken"   
+	},
+
+	{
+	   "Key": "RefreshTokenSettingName",
+	   "Value": "RefreshToken"   
+	},
+
+	{
+	   "Key": "ClientIdSettingName",
+	   "Value": "ClientId"   
+	},
+
+	{
+	   "Key": "ClientSecretSettingName",
+	   "Value": "ClientSecret"   
+	},
+
+	{
+	   "Key": "RedirectUriSettingName",
+	   "Value": "RedirectUri"   
+	},
+
+	{
+	   "Key": "TokenRequestUrlSettingName",
+	   "Value": "TokenRequestUrl"   
+	},
+
+	{
+	   "Key": "AuthorizationRequestUrlSettingName",
+	   "Value": "AuthorizationRequestUrl"   
+	},
+
+	{
+	   "Key": "PermissionsScopeSettingName",
+	   "Value": "PermissionsScope"   
+	},
+
+]

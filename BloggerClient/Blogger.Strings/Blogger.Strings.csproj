@@ -5,12 +5,12 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}</ProjectGuid>
+    <ProjectGuid>{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}</ProjectGuid>
     <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Blogger.ViewModels</RootNamespace>
-    <AssemblyName>Blogger.ViewModels</AssemblyName>
+    <RootNamespace>Blogger.Strings</RootNamespace>
+    <AssemblyName>Blogger.Strings</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
     <TargetFrameworkProfile>WindowsPhone71</TargetFrameworkProfile>
@@ -41,6 +41,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="ServiceStack.Text.WP">
+      <HintPath>..\packages\ServiceStack.Text.3.9.55\lib\sl4-windowsphone71\ServiceStack.Text.WP.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows" />
     <Reference Include="system" />
     <Reference Include="System.Core" />
@@ -49,24 +52,22 @@
     <Reference Include="mscorlib.extensions" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseViewModel.cs" />
-    <Compile Include="MainPageViewModel.cs" />
-    <Compile Include="AppViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserViewModel.cs" />
+    <Compile Include="StringsManager.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Assets\setting.names.json" />
+    <EmbeddedResource Include="Assets\setting.defs.json" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Blogger.Data\Blogger.Data.csproj">
+      <Project>{CB58E918-41AE-4B73-BE11-89C18132F769}</Project>
+      <Name>Blogger.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Blogger.Enums\Blogger.Enums.csproj">
       <Project>{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}</Project>
       <Name>Blogger.Enums</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Blogger.Strings\Blogger.Strings.csproj">
-      <Project>{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}</Project>
-      <Name>Blogger.Strings</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BloggerCommunicator\Blogger.Core.csproj">
-      <Project>{2DCAEEF5-0E47-4CA4-BC72-1F9571E630B8}</Project>
-      <Name>Blogger.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

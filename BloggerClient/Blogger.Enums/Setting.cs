@@ -7,9 +7,17 @@ namespace Blogger.Enums
 {
     public enum Setting
     {
-        LoginName,
-        AuthTokenName,
-        AccessTokenName,
-        RefreshTokenName
+        // Make sure that the members are match the Keys in Blogger.Strings > setting.names.json resource
+        LoginSettingName,
+        AuthTokenSettingName,
+        AccessTokenSettingName,
+        RefreshTokenSettingName,
+
+        ClientIdSettingName,
+        ClientSecretSettingName,
+        RedirectUriSettingName,
+        TokenRequestUrlSettingName,
+        AuthorizationRequestUrlSettingName,
+        PermissionsScopeSettingName,
     }
 }

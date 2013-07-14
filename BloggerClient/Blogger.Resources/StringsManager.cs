@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Resources;
 using System.Text;
 using System.Threading;
@@ -76,7 +77,7 @@ namespace Blogger.Resources
                     if (_settingsInstance == null)
                     {
                         _settingsInstance = new StringsManager();
-                        _settingsInstance._resManager = new ResourceManager("Settings.Names", typeof(StringsManager).Assembly);                        
+                        _settingsInstance._resManager = new ResourceManager("Blogger.Resources.Settings.Names", Assembly.GetExecutingAssembly());                        
                     }
                 }
                 }
@@ -97,7 +98,7 @@ namespace Blogger.Resources
                         if (_locStringsInstance == null)
                         {
                             _locStringsInstance = new StringsManager();
-                            _locStringsInstance._resManager = new ResourceManager("Localization.Strings", typeof(StringsManager).Assembly);                            
+                            _locStringsInstance._resManager = new ResourceManager("Blogger.Resources.Localization.Strings", typeof(StringsManager).Assembly);                            
                         }
                     }
                 }

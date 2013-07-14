@@ -1,4 +1,4 @@
-﻿using Blogger.Resources;
+﻿using Blogger.Strings;
 using System;
 using System.Collections.Generic;
 using System.IO.IsolatedStorage;

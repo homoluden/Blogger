@@ -7,11 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Core", "BloggerComm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Data", "Blogger.Data\Blogger.Data.csproj", "{CB58E918-41AE-4B73-BE11-89C18132F769}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Resources", "Blogger.Resources\Blogger.Resources.csproj", "{E812CB57-C2A9-42EF-A38B-533E14979772}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.ViewModels", "Blogger.ViewModels\Blogger.ViewModels.csproj", "{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Enums", "Blogger.Enums\Blogger.Enums.csproj", "{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Blogger.Strings", "Blogger.Strings\Blogger.Strings.csproj", "{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,12 +41,6 @@ Global
 		{CB58E918-41AE-4B73-BE11-89C18132F769}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB58E918-41AE-4B73-BE11-89C18132F769}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB58E918-41AE-4B73-BE11-89C18132F769}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E812CB57-C2A9-42EF-A38B-533E14979772}.ASP|Any CPU.ActiveCfg = Release|Any CPU
-		{E812CB57-C2A9-42EF-A38B-533E14979772}.ASP|Any CPU.Build.0 = Release|Any CPU
-		{E812CB57-C2A9-42EF-A38B-533E14979772}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E812CB57-C2A9-42EF-A38B-533E14979772}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E812CB57-C2A9-42EF-A38B-533E14979772}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E812CB57-C2A9-42EF-A38B-533E14979772}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}.ASP|Any CPU.ActiveCfg = Release|Any CPU
 		{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}.ASP|Any CPU.Build.0 = Release|Any CPU
 		{7AE38A5A-AD20-4D52-9D8A-C3350D82F70C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -59,6 +53,12 @@ Global
 		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}.ASP|Any CPU.ActiveCfg = Release|Any CPU
+		{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}.ASP|Any CPU.Build.0 = Release|Any CPU
+		{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

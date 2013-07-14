@@ -86,9 +86,9 @@
       <Project>{3D3A8048-D158-49F6-A53B-8AF58DA9AC2F}</Project>
       <Name>Blogger.Enums</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Blogger.Resources\Blogger.Resources.csproj">
-      <Project>{E812CB57-C2A9-42EF-A38B-533E14979772}</Project>
-      <Name>Blogger.Resources</Name>
+    <ProjectReference Include="..\Blogger.Strings\Blogger.Strings.csproj">
+      <Project>{95C0D639-0D57-41B3-A7F1-D69EC9CE59BD}</Project>
+      <Name>Blogger.Strings</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />

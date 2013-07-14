@@ -1,6 +1,6 @@
 ﻿using Blogger.Data.Responses;
 using Blogger.Enums;
-using Blogger.Resources;
+using Blogger.Strings;
 using ServiceStack.Text;
 using System;
 using System.IO;
@@ -64,22 +64,34 @@ namespace Blogger.Core
         {
             string settingValue;
 
-            return settings.TryGetValue<string>(StringsManager.GetSettingName(settingNameEnum), out settingValue) ?
+            return settings.TryGetValue<string>(StringsManagers.GetSettingName(settingNameEnum), out settingValue) ?
                                             settingValue :
-                                            StringsManager.NOT_AVAILABLE_STRING;
+                                            StringsManagers.GetSettingDefaultValue(settingNameEnum);
         }
 
-        private void LoadSettings()
+        public void LoadSettings()
         {
             var settings = IsolatedStorageSettings.ApplicationSettings;
             
-            Communicator.Instance.Login = TryLoadIndividualSetting(settings, Setting.LoginName);
+            Communicator.Instance.Login = TryLoadIndividualSetting(settings, Setting.LoginSettingName);
 
-            Communicator.Instance.AuthorizationToken = TryLoadIndividualSetting(settings, Setting.AuthTokenName);
+            Communicator.Instance.AuthorizationToken = TryLoadIndividualSetting(settings, Setting.AuthTokenSettingName);
 
-            Communicator.Instance.AccessToken = TryLoadIndividualSetting(settings, Setting.AccessTokenName);
+            Communicator.Instance.AccessToken = TryLoadIndividualSetting(settings, Setting.AccessTokenSettingName);
 
-            Communicator.Instance.RefreshToken = TryLoadIndividualSetting(settings, Setting.RefreshTokenName);
+            Communicator.Instance.RefreshToken = TryLoadIndividualSetting(settings, Setting.RefreshTokenSettingName);
+            
+            Communicator.Instance.ClientId = TryLoadIndividualSetting(settings, Setting.ClientIdSettingName);
+
+            Communicator.Instance.ClientSecret = TryLoadIndividualSetting(settings, Setting.ClientSecretSettingName);
+
+            Communicator.Instance.RedirectUri = TryLoadIndividualSetting(settings, Setting.RedirectUriSettingName);
+
+            Communicator.Instance.TokenRequestUrl = TryLoadIndividualSetting(settings, Setting.TokenRequestUrlSettingName);
+
+            Communicator.Instance.AuthorizationRequestUrl = TryLoadIndividualSetting(settings, Setting.AuthorizationRequestUrlSettingName);
+
+            Communicator.Instance.PermissionsScope = TryLoadIndividualSetting(settings, Setting.PermissionsScopeSettingName);
         }
 
         private void TrySetIndividualSetting(IsolatedStorageSettings settings, Setting settingNameEnum, string settingValue)
@@ -95,17 +107,29 @@ namespace Blogger.Core
             }            
         }
 
-        private void SaveSettings()
+        public void SaveSettings()
         {
             var settings = IsolatedStorageSettings.ApplicationSettings;
 
-            TrySetIndividualSetting(settings, Setting.LoginName, Communicator.Instance.Login);
+            TrySetIndividualSetting(settings, Setting.LoginSettingName, Communicator.Instance.Login);
 
-            TrySetIndividualSetting(settings, Setting.AuthTokenName, Communicator.Instance.AuthorizationToken);
+            TrySetIndividualSetting(settings, Setting.AuthTokenSettingName, Communicator.Instance.AuthorizationToken);
 
-            TrySetIndividualSetting(settings, Setting.AccessTokenName, Communicator.Instance.AccessToken);
+            TrySetIndividualSetting(settings, Setting.AccessTokenSettingName, Communicator.Instance.AccessToken);
 
-            TrySetIndividualSetting(settings, Setting.RefreshTokenName, Communicator.Instance.RefreshToken);
+            TrySetIndividualSetting(settings, Setting.RefreshTokenSettingName, Communicator.Instance.RefreshToken);
+
+            TrySetIndividualSetting(settings, Setting.ClientIdSettingName, Communicator.Instance.ClientId);
+
+            TrySetIndividualSetting(settings, Setting.ClientSecretSettingName, Communicator.Instance.ClientSecret);
+
+            TrySetIndividualSetting(settings, Setting.RedirectUriSettingName, Communicator.Instance.RedirectUri);
+
+            TrySetIndividualSetting(settings, Setting.TokenRequestUrlSettingName, Communicator.Instance.TokenRequestUrl);
+
+            TrySetIndividualSetting(settings, Setting.AuthorizationRequestUrlSettingName, Communicator.Instance.AuthorizationRequestUrl);
+
+            TrySetIndividualSetting(settings, Setting.PermissionsScopeSettingName, Communicator.Instance.PermissionsScope);
 
             settings.Save();
         }
@@ -128,41 +152,6 @@ namespace Blogger.Core
         #region Private Methods
         private void InitializeCommunicator() 
         {
-            if (!_settings.Contains("Login"))
-            {
-                Login = "asm@example.com";
-            }
-
-            if (!_settings.Contains("ClientId"))
-            {
-                ClientId = "715063550855.apps.googleusercontent.com";
-            }
-
-            if (!_settings.Contains("ClientSecret"))
-            {
-                ClientSecret = "iquSk4i-DHCXdYYZdLGPmMzJ";
-            }
-
-            if (!_settings.Contains("RedirectUri"))
-            {
-                RedirectUri = "urn:ietf:wg:oauth:2.0:oob";
-            }
-
-            if (!_settings.Contains("TokenRequestUrl"))
-            {
-                TokenRequestUrl = "https://accounts.google.com/o/oauth2/token";
-            }
-
-            if (!_settings.Contains("AuthorizationRequestUrl"))
-            {
-                AuthorizationRequestUrl = "https://accounts.google.com/o/oauth2/auth";
-            }
-
-            if (!_settings.Contains("PermissionsScope"))
-            {
-                PermissionsScope = "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fblogger";
-            }
-
             _handler = new HttpClientHandler();
             _client = new HttpClient(_handler);
         }
