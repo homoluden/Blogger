@@ -1,4 +1,5 @@
-﻿using Blogger.Data.Responses;
+﻿using Blogger.Core.Services;
+using Blogger.Data.Responses;
 using Blogger.Enums;
 using Blogger.Strings;
 using ServiceStack.Text;
@@ -33,6 +34,8 @@ namespace Blogger.Core
 
         #region Properties
 
+        public RestClient Service { get; set; }
+
         public string Login { get; set; }
         
         public string AuthorizationToken { get; set; }
@@ -40,9 +43,9 @@ namespace Blogger.Core
         public string AccessToken { get; set; }
         
         public string RefreshToken { get; set; }
-        
-        public bool IsAuthorized { get; set; }
 
+        public int ExpiresIn { get; set; }
+        
         public string ClientId { get; set; }
 
         public string ClientSecret { get; set; }
@@ -53,13 +56,50 @@ namespace Blogger.Core
 
         public string AuthorizationRequestUrl { get; set; }
 
+        public string UserInfoRequestUrl { get; set; }
+
         public string PermissionsScope { get; set; }
 
         #endregion
 
-        
+
+        #region PublicMethods
+
+        public void Authorize()
+        {
+            Service.LoadAccessTokensAsync(
+                // onSuccess
+                t => {
+                    throw new NotFiniteNumberException();
+                },
+
+                // onError
+                t => {
+                    throw new NotFiniteNumberException();
+                });
+        }
+
+        public void LoadUserInfoAsync()                
+        {
+            Service.LoadUserInfoAsync(
+                // onSuccess
+                t =>
+                {
+                    throw new NotFiniteNumberException();
+                },
+
+                // onError
+                t =>
+                {
+                    throw new NotFiniteNumberException();
+                });
+        }
+
+        #endregion
+
+
         #region Private Methods
-        
+
         private string TryLoadIndividualSetting(IsolatedStorageSettings settings, Setting settingNameEnum)
         {
             string settingValue;
@@ -92,6 +132,8 @@ namespace Blogger.Core
             Communicator.Instance.AuthorizationRequestUrl = TryLoadIndividualSetting(settings, Setting.AuthorizationRequestUrlSettingName);
 
             Communicator.Instance.PermissionsScope = TryLoadIndividualSetting(settings, Setting.PermissionsScopeSettingName);
+
+            Communicator.Instance.UserInfoRequestUrl = TryLoadIndividualSetting(settings, Setting.UserInfoRequestUrlSettingName);
         }
 
         private void TrySetIndividualSetting(IsolatedStorageSettings settings, Setting settingNameEnum, string settingValue)
@@ -131,68 +173,11 @@ namespace Blogger.Core
 
             TrySetIndividualSetting(settings, Setting.PermissionsScopeSettingName, Communicator.Instance.PermissionsScope);
 
+            TrySetIndividualSetting(settings, Setting.UserInfoRequestUrlSettingName, Communicator.Instance.UserInfoRequestUrl);
+
             settings.Save();
         }
 
-        private object HandleAccessTokensResponse(Task<HttpResponseMessage> task) 
-        {
-            var readTask = task.Result.Content.ReadAsStringAsync();
-            readTask.Wait();
-
-            var response = readTask.Result;
-            
-            return response.FromJson<AccessTokensResponse>();
-        }
-        private void HandleAccessTokenLoadingError(Task<HttpResponseMessage> task) 
-        {
-            // TODO: Handle error here
-        }
-        #endregion
-
-        #region Private Methods
-        private void InitializeCommunicator() 
-        {
-            _handler = new HttpClientHandler();
-            _client = new HttpClient(_handler);
-        }
-        #endregion
-
-        #region Public Methods
-        public void LoadAccessTokens() 
-        {
-            if (!IsAuthorized)
-            {
-                return;
-            }
-
-            var contentString = string.Format("code={0}&client_id={1}&client_secret={2}&redirect_uri={3}&grant_type=authorization_code", 
-                                              AuthorizationToken,
-                                              ClientId,
-                                              ClientSecret,
-                                              RedirectUri);
-
-            var content = new StringContent(contentString);
-            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/x-www-form-urlencoded");
-                                    
-            var postTask = _client.PostAsync(TokenRequestUrl, content);
-            postTask.
-                ContinueWith(t =>
-                    {
-                        content.Dispose();
-                        //writer.Dispose(); // Disposed automagically after content.Dispose() - IDisposable convention
-                        //stream.Dispose(); // Disposed automagically after content.Dispose() - IDisposable convention
-
-                        if (t.IsFaulted)
-                        {
-                            HandleAccessTokenLoadingError(t);
-                        }
-                        else
-                        {
-                            HandleAccessTokensResponse(t);
-                        }
-                    }
-                );
-        }
         #endregion
 
 
@@ -202,7 +187,7 @@ namespace Blogger.Core
 
         private Communicator() 
         {
-            InitializeCommunicator();
+            Service = new RestClient();
         }
 
         public static Communicator Instance

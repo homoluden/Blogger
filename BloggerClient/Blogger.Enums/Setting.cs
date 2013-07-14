@@ -19,5 +19,7 @@ namespace Blogger.Enums
         TokenRequestUrlSettingName,
         AuthorizationRequestUrlSettingName,
         PermissionsScopeSettingName,
+
+        UserInfoRequestUrlSettingName,
     }
 }

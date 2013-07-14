@@ -32,7 +32,7 @@ namespace Blogger.UI.Controls
         {
             Communicator.Instance.Login = LoginBox.Text;
             Communicator.Instance.AuthorizationToken = AuthBox.Text;
-            Communicator.Instance.LoadAccessTokens();
+            Communicator.Instance.Authorize();            
         }
 
         private void GetAuthCodeButton_Click_1(object sender, RoutedEventArgs e)

@@ -34,5 +34,11 @@
 	   "Key": "PermissionsScopeSettingName",
 	   "Value": "https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fblogger"   
 	},
+	
+	{
+	   "Key": "UserInfoRequestUrlSettingName",
+	   "Value": "https://www.googleapis.com/oauth2/v1/userinfo"   
+	},
+
 
 ]
