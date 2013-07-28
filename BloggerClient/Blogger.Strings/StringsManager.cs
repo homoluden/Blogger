@@ -20,7 +20,6 @@ namespace Blogger.Strings
         #endregion
 
         #region Fields
-        ResourceManager _resManager;
         CultureInfo _currCulture;
         Dictionary<string, string> _cache = new Dictionary<string, string>();
         #endregion
