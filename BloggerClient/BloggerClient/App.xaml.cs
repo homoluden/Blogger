@@ -64,7 +64,8 @@ namespace Blogger.UI
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
 
-            ViewModel = new AppViewModel();
+            Resources.Add("Locator", Locator.Instance);
+            ViewModel = Locator.Instance.RootViewModel;
 
             RootFrame.UriMapper = Resources["UriMapper"] as UriMapper;
         }
