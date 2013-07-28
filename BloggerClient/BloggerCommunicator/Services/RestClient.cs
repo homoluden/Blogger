@@ -16,9 +16,23 @@ namespace Blogger.Core.Services
         HttpClient _client;
         #endregion
 
+        #region Static Methods
+
+        public static T ParseJson<T>(HttpResponseMessage message) 
+        {
+            var readTask = message.Content.ReadAsStringAsync();
+            readTask.Wait();
+
+            var response = readTask.Result.FromJson<T>();
+
+            return response;
+        }
+
+        #endregion
+
         #region Public Methods
-        
-        public void LoadAccessTokensAsync(Action<Task<HttpResponseMessage>> onSuccess, Action<Task<HttpResponseMessage>> onError)
+
+        public void LoadAccessTokensAsync(Action<AccessTokensResponse> onSuccess, Action<ErrorResponse> onError)
         {
             if (string.IsNullOrWhiteSpace(Communicator.Instance.AuthorizationToken))
             {
@@ -44,29 +58,28 @@ namespace Blogger.Core.Services
                     {
                         if (onError != null)
                         {
-                            onError(t);
+                            onError(new ErrorResponse() { Error = t.Exception, RawResult = ParseJson<ServerErrorResponse>(t.Result)});
                         }                        
                     }
                     else
                     {
-                        var readTask = t.Result.Content.ReadAsStringAsync();
-                        readTask.Wait();
+                        var response = ParseJson<AccessTokensResponse>(t.Result);
 
-                        var response = readTask.Result.FromJson<AccessTokensResponse>();
+                        //Communicator.Instance.AccessToken = response.access_token;
+                        //Communicator.Instance.RefreshToken = response.refresh_token;
+                        //Communicator.Instance.ExpiresIn = response.expires_in;
 
-                        Communicator.Instance.AccessToken = response.access_token;
-                        Communicator.Instance.RefreshToken = response.refresh_token;
-                        Communicator.Instance.ExpiresIn = response.expires_in;
+                        //TODO: Check response content here. Invoke error callback if response doesn't parse well.
 
                         if (onSuccess != null)
                         {
-                            onSuccess(t);
+                            onSuccess(response);
                         }                        
                     }
                 });
         }
 
-        public void LoadUserInfoAsync(Action<Task<HttpResponseMessage>> onSuccess, Action<Task<HttpResponseMessage>> onError)
+        public void LoadUserInfoAsync(Action<UserInfoResponse> onSuccess, Action<ErrorResponse> onError)
         {
             if (string.IsNullOrWhiteSpace(Communicator.Instance.AccessToken))
             {
@@ -83,23 +96,18 @@ namespace Blogger.Core.Services
                     {
                         if (onError != null)
                         {
-                            onError(t);
+                            onError(new ErrorResponse() { Error = t.Exception, RawResult = ParseJson<ServerErrorResponse>(t.Result) });
                         }
                     }
                     else
                     {
-                        var readTask = t.Result.Content.ReadAsStringAsync();
-                        readTask.Wait();
+                        var response = ParseJson<UserInfoResponse>(t.Result);
 
-                        var response = readTask.Result.FromJson<AccessTokensResponse>();
-
-                        Communicator.Instance.AccessToken = response.access_token;
-                        Communicator.Instance.RefreshToken = response.refresh_token;
-                        Communicator.Instance.ExpiresIn = response.expires_in;
+                        //TODO: Check response content here. Invoke error callback if response doesn't parse well.
 
                         if (onSuccess != null)
                         {
-                            onSuccess(t);
+                            onSuccess(response);
                         }
                     }
                 });

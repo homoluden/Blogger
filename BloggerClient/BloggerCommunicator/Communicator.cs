@@ -65,33 +65,54 @@ namespace Blogger.Core
 
         #region PublicMethods
 
-        public void Authorize(Action<Task<HttpResponseMessage>> onSuccess, Action<Task<HttpResponseMessage>> onError)
+        public void Authorize(Action<AccessTokensResponse> onSuccess, Action<ErrorResponse> onError)
         {
             Service.LoadAccessTokensAsync(
                 // onSuccess
-                t => {
-                    //throw new NotImplementedException();
+                response =>
+                {
+
+                    AccessToken = response.access_token;
+                    RefreshToken = response.refresh_token;
+                    ExpiresIn = response.expires_in;
+
+                    if (onSuccess != null)
+                    {
+                        onSuccess(response);
+                    }
                 },
 
                 // onError
-                t => {
-                    throw new NotImplementedException();
+                response =>
+                {
+                    //TODO: Log error here
+
+                    if (onError != null)
+                    {
+                        onError(response);
+                    }
                 });
         }
 
-        public void LoadUserInfoAsync()                
+        public void LoadUserInfoAsync(Action<UserInfoResponse> successLoadingCallback, Action<ErrorResponse> failedLoadingCallback)                
         {
             Service.LoadUserInfoAsync(
                 // onSuccess
-                t =>
+                response =>
                 {
-                    //throw new NotImplementedException();
+                    if (successLoadingCallback != null)
+                    {
+                        successLoadingCallback(response);
+                    }
                 },
 
                 // onError
-                t =>
+                response =>
                 {
-                    throw new NotImplementedException();
+                    if (failedLoadingCallback != null)
+                    {
+                        failedLoadingCallback(response);
+                    }
                 });
         }
 

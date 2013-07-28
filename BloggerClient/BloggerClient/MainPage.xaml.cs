@@ -39,10 +39,7 @@ namespace Blogger.UI
         {
             ViewModel.CheckTokens(
                 // onTokensExpired
-                () => 
-                {
-                    NavigationService.Navigate(new Uri("/Authorize", UriKind.Relative));
-                },
+                () => NavigationService.Navigate(new Uri("/Authorize", UriKind.Relative)),
 
                 // onTokensOk
                 () => 
